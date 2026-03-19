@@ -4,7 +4,7 @@ import Link from 'next/link'
 import { getAllCollections } from '@/lib/api/collections'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -17,9 +17,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function CollectionsPage() {
+export default async function CollectionsPage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const collections = await getAllCollections()
-  const t = await getTranslations('collections')
+  const t = await getTranslations({ locale, namespace: 'collections' })
 
   return (
     <div className="pt-24">

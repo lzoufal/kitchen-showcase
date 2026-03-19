@@ -5,7 +5,7 @@ import { getAllShowrooms } from '@/lib/api/showrooms'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Button } from '@/components/ui/Button'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -18,9 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function ShowroomsPage() {
+export default async function ShowroomsPage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const showrooms = await getAllShowrooms()
-  const t = await getTranslations('showrooms')
+  const t = await getTranslations({ locale, namespace: 'showrooms' })
 
   return (
     <div className="pt-24">

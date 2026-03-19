@@ -5,7 +5,7 @@ import { getAllKitchens } from '@/lib/api/kitchens'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Badge } from '@/components/ui/Badge'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -18,10 +18,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function KitchensPage() {
+export default async function KitchensPage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const kitchens = await getAllKitchens()
-  const t = await getTranslations('kitchens')
-  const tCommon = await getTranslations('common')
+  const t = await getTranslations({ locale, namespace: 'kitchens' })
+  const tCommon = await getTranslations({ locale, namespace: 'common' })
 
   return (
     <div className="pt-24">

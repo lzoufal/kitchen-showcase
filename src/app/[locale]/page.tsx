@@ -6,8 +6,13 @@ import { TestimonialsSection } from '@/components/sections/home/TestimonialsSect
 import { ConsultationCTA } from '@/components/sections/home/ConsultationCTA'
 import { getFeaturedKitchens } from '@/lib/api/kitchens'
 import { getFeaturedTestimonials } from '@/lib/api/testimonials'
+import { setRequestLocale } from 'next-intl/server'
 
-export default async function HomePage() {
+type Props = { params: Promise<{ locale: string }> }
+
+export default async function HomePage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const [kitchens, testimonials] = await Promise.all([
     getFeaturedKitchens(4),
     getFeaturedTestimonials(3),

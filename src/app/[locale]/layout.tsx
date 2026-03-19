@@ -6,7 +6,7 @@ import { Footer } from '@/components/layout/Footer'
 import { Providers } from '@/components/layout/Providers'
 import { SITE } from '@/lib/constants/site'
 import { NextIntlClientProvider } from 'next-intl'
-import { getMessages } from 'next-intl/server'
+import { getMessages, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 
@@ -54,6 +54,7 @@ export default async function LocaleLayout({
     notFound()
   }
 
+  setRequestLocale(locale)
   const messages = await getMessages()
 
   return (

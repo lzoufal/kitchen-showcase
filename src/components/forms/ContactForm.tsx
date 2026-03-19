@@ -34,12 +34,8 @@ export function ContactForm() {
     defaultValues: { interest: 'new-kitchen' },
   })
 
-  const onSubmit = async (data: FormData) => {
-    await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
-    })
+  const onSubmit = async (_data: FormData) => {
+    // Static export mockup: log only
     setSubmitted(true)
   }
 

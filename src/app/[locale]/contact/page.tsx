@@ -4,7 +4,7 @@ import { Divider } from '@/components/ui/Divider'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { SITE } from '@/lib/constants/site'
 import { Mail, Phone, MapPin } from 'lucide-react'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -17,8 +17,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function ContactPage() {
-  const t = await getTranslations('contact')
+export default async function ContactPage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
+  const t = await getTranslations({ locale, namespace: 'contact' })
 
   return (
     <div className="pt-24">

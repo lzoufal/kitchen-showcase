@@ -5,7 +5,7 @@ import { getAllArticles } from '@/lib/api/journal'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { formatDate } from '@/lib/utils/formatters'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 
 type Props = { params: Promise<{ locale: string }> }
 
@@ -18,9 +18,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function JournalPage() {
+export default async function JournalPage({ params }: Props) {
+  const { locale } = await params
+  setRequestLocale(locale)
   const articles = await getAllArticles()
-  const t = await getTranslations('journal')
+  const t = await getTranslations({ locale, namespace: 'journal' })
 
   return (
     <div className="pt-24">

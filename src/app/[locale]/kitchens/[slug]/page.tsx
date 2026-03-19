@@ -7,7 +7,7 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 
 type Props = { params: Promise<{ locale: string; slug: string }> }
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function KitchenDetailPage({ params }: Props) {
   const { slug, locale } = await params
+  setRequestLocale(locale)
   const kitchen = await getKitchenBySlug(slug)
   if (!kitchen) notFound()
 

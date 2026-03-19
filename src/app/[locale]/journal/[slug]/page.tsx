@@ -6,7 +6,7 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Button } from '@/components/ui/Button'
 import { formatDate } from '@/lib/utils/formatters'
-import { getTranslations } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 
 type Props = { params: Promise<{ locale: string; slug: string }> }
@@ -29,6 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function JournalArticlePage({ params }: Props) {
   const { slug, locale } = await params
+  setRequestLocale(locale)
   const article = await getArticleBySlug(slug)
   if (!article) notFound()
 
