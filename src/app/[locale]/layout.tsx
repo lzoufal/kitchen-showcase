@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { HtmlLang } from '@/components/ui/HtmlLang'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Providers } from '@/components/layout/Providers'
@@ -43,8 +44,7 @@ export default async function LocaleLayout({
 
   return (
     <>
-      {/* Set lang on <html> synchronously before hydration */}
-      <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang="${locale}";` }} />
+      <HtmlLang locale={locale} />
       <NextIntlClientProvider messages={messages}>
         <Providers>
           <Header />
