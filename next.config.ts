@@ -6,7 +6,10 @@ const withNextIntl = createNextIntlPlugin('./src/i18n/request.ts')
 const nextConfig: NextConfig = {
   output: 'export',
   trailingSlash: true,
+  // NEXT_BASE_PATH is set in CI to the GitHub Pages subdirectory (e.g. /kitchen-showcase)
+  basePath: process.env.NEXT_BASE_PATH ?? '',
   images: {
+    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'images.unsplash.com' },
       { protocol: 'https', hostname: 'cdn.sanity.io' },
