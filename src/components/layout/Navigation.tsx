@@ -1,19 +1,28 @@
 'use client'
 
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { Link } from '@/i18n/navigation'
+import { usePathname } from '@/i18n/navigation'
+import { useLocale, useTranslations } from 'next-intl'
 import { cn } from '@/lib/utils/cn'
-import { NAV_LINKS } from '@/lib/constants/navigation'
 
 export function Navigation() {
-  const pathname = usePathname()
+  const pathname = usePathname() // already locale-stripped
+  const locale = useLocale()
+  const t = useTranslations('nav')
+
+  const navLinks = [
+    { labelKey: 'kitchens' as const, href: '/kitchens' },
+    { labelKey: 'about' as const, href: '/about' },
+    { labelKey: 'showrooms' as const, href: '/showrooms' },
+  ]
 
   return (
     <nav className="hidden md:flex items-center gap-8">
-      {NAV_LINKS.map((link) => (
+      {navLinks.map((link) => (
         <Link
           key={link.href}
           href={link.href}
+          locale={locale}
           className={cn(
             'font-jost text-xs font-medium tracking-widest uppercase transition-colors duration-300',
             pathname === link.href || pathname.startsWith(link.href + '/')
@@ -21,7 +30,7 @@ export function Navigation() {
               : 'text-stone-700 hover:text-stone-950'
           )}
         >
-          {link.label}
+          {t(link.labelKey)}
         </Link>
       ))}
     </nav>

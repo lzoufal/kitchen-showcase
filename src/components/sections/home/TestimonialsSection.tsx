@@ -1,20 +1,23 @@
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import type { Testimonial } from '@/types/testimonial'
+import { getTranslations } from 'next-intl/server'
 
 interface TestimonialsSectionProps {
   testimonials: Testimonial[]
 }
 
-export function TestimonialsSection({ testimonials }: TestimonialsSectionProps) {
+export async function TestimonialsSection({ testimonials }: TestimonialsSectionProps) {
+  const t = await getTranslations('home.testimonials')
+
   return (
     <section className="py-24 lg:py-32 bg-stone-950">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
         <AnimatedSection className="mb-16">
           <Divider variant="gold" className="mb-6" />
-          <p className="font-jost text-xs tracking-widest uppercase text-gold mb-3">Testimonials</p>
+          <p className="font-jost text-xs tracking-widest uppercase text-gold mb-3">{t('label')}</p>
           <h2 className="font-cormorant text-4xl lg:text-5xl font-light text-cream">
-            What Our Clients Say
+            {t('heading')}
           </h2>
         </AnimatedSection>
 

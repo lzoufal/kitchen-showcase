@@ -3,21 +3,24 @@ import Link from 'next/link'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import type { Collection } from '@/types/collection'
+import { getTranslations } from 'next-intl/server'
 
 interface FeaturedCollectionsProps {
   collections: Collection[]
 }
 
-export function FeaturedCollections({ collections }: FeaturedCollectionsProps) {
+export async function FeaturedCollections({ collections }: FeaturedCollectionsProps) {
+  const t = await getTranslations('home.collections')
+
   return (
     <section className="py-24 lg:py-32 bg-cream">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
         <AnimatedSection className="mb-16">
           <Divider className="mb-6" />
-          <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">Our Collections</p>
+          <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">{t('label')}</p>
           <h2 className="font-cormorant text-4xl lg:text-5xl font-light text-stone-950">
-            Three Visions,
-            <span className="italic"> One Standard</span>
+            {t('heading')}
+            <span className="italic">{t('headingItalic')}</span>
           </h2>
         </AnimatedSection>
 

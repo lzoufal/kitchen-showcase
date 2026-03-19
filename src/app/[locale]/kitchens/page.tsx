@@ -5,15 +5,23 @@ import { getAllKitchens } from '@/lib/api/kitchens'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Badge } from '@/components/ui/Badge'
-import { formatPrice } from '@/lib/utils/formatters'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Kitchens',
-  description: 'Browse the complete collection of Atelier Kitchens luxury bespoke kitchens. From minimalist Nordic to dramatic black to warm Mediterranean.',
+type Props = { params: Promise<{ locale: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'kitchens' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+  }
 }
 
 export default async function KitchensPage() {
   const kitchens = await getAllKitchens()
+  const t = await getTranslations('kitchens')
+  const tCommon = await getTranslations('common')
 
   return (
     <div className="pt-24">
@@ -21,9 +29,9 @@ export default async function KitchensPage() {
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16 lg:py-24">
         <AnimatedSection>
           <Divider className="mb-6" />
-          <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">All Kitchens</p>
+          <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">{t('pageLabel')}</p>
           <h1 className="font-cormorant text-5xl lg:text-7xl font-light text-stone-950">
-            Our Work
+            {t('pageHeading')}
           </h1>
         </AnimatedSection>
       </div>
@@ -43,8 +51,8 @@ export default async function KitchensPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute top-3 left-3 flex gap-2">
-                    {kitchen.isNew && <Badge>New</Badge>}
-                    {kitchen.isFeatured && <Badge variant="dark">Featured</Badge>}
+                    {kitchen.isNew && <Badge>{tCommon('new')}</Badge>}
+                    {kitchen.isFeatured && <Badge variant="dark">{tCommon('featured')}</Badge>}
                   </div>
                 </div>
                 <div className="p-6 border-t border-cream-200">
@@ -53,11 +61,6 @@ export default async function KitchensPage() {
                   </p>
                   <h3 className="font-cormorant text-2xl font-medium text-stone-950">{kitchen.name}</h3>
                   <p className="font-jost text-sm font-light text-stone-700 mt-1 line-clamp-2">{kitchen.description}</p>
-                  {kitchen.startingPrice && kitchen.currency && (
-                    <p className="font-jost text-xs text-greige mt-3">
-                      From {formatPrice(kitchen.startingPrice, kitchen.currency)}
-                    </p>
-                  )}
                 </div>
               </Link>
             </AnimatedSection>

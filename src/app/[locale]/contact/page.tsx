@@ -4,13 +4,22 @@ import { Divider } from '@/components/ui/Divider'
 import { ContactForm } from '@/components/forms/ContactForm'
 import { SITE } from '@/lib/constants/site'
 import { Mail, Phone, MapPin } from 'lucide-react'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Contact',
-  description: 'Get in touch with Atelier Kitchens. Book a private design consultation at our Prague or Bratislava showrooms.',
+type Props = { params: Promise<{ locale: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'contact' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+  }
 }
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const t = await getTranslations('contact')
+
   return (
     <div className="pt-24">
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
@@ -19,12 +28,12 @@ export default function ContactPage() {
           <div className="lg:col-span-2">
             <AnimatedSection>
               <Divider className="mb-6" />
-              <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">Get in Touch</p>
+              <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">{t('label')}</p>
               <h1 className="font-cormorant text-5xl lg:text-6xl font-light text-stone-950 mb-8">
-                Let&apos;s Talk About Your Kitchen
+                {t('heading')}
               </h1>
               <p className="font-jost text-sm font-light leading-relaxed text-stone-700 mb-10">
-                Whether you have a clear vision or are just beginning to explore, we&apos;d love to hear from you. We respond to all enquiries within one business day.
+                {t('intro')}
               </p>
             </AnimatedSection>
 
@@ -32,7 +41,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-4">
                 <Mail size={16} className="text-gold mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-jost text-xs tracking-widest uppercase text-greige mb-1">Email</p>
+                  <p className="font-jost text-xs tracking-widest uppercase text-greige mb-1">{t('emailLabel')}</p>
                   <a href={`mailto:${SITE.contact.email}`} className="font-jost text-sm text-stone-950 hover:text-gold transition-colors">
                     {SITE.contact.email}
                   </a>
@@ -41,7 +50,7 @@ export default function ContactPage() {
               <div className="flex items-start gap-4">
                 <Phone size={16} className="text-gold mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-jost text-xs tracking-widest uppercase text-greige mb-1">Phone</p>
+                  <p className="font-jost text-xs tracking-widest uppercase text-greige mb-1">{t('phoneLabel')}</p>
                   <a href={`tel:${SITE.contact.phone.replace(/\s/g, '')}`} className="font-jost text-sm text-stone-950 hover:text-gold transition-colors">
                     {SITE.contact.phone}
                   </a>
@@ -50,8 +59,8 @@ export default function ContactPage() {
               <div className="flex items-start gap-4">
                 <MapPin size={16} className="text-gold mt-0.5 shrink-0" />
                 <div>
-                  <p className="font-jost text-xs tracking-widest uppercase text-greige mb-1">Showrooms</p>
-                  <p className="font-jost text-sm text-stone-700">Prague & Bratislava</p>
+                  <p className="font-jost text-xs tracking-widest uppercase text-greige mb-1">{t('showroomsLabel')}</p>
+                  <p className="font-jost text-sm text-stone-700">{t('showroomsValue')}</p>
                 </div>
               </div>
             </AnimatedSection>

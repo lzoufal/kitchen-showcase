@@ -7,13 +7,15 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import { formatPrice } from '@/lib/utils/formatters'
+import { getTranslations } from 'next-intl/server'
+import { routing } from '@/i18n/routing'
 
-type Props = { params: Promise<{ slug: string }> }
+type Props = { params: Promise<{ locale: string; slug: string }> }
 
 export async function generateStaticParams() {
+  const locales = routing.locales
   const kitchens = await getAllKitchens()
-  return kitchens.map((k) => ({ slug: k.slug }))
+  return locales.flatMap((locale) => kitchens.map((k) => ({ locale, slug: k.slug })))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -27,12 +29,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function KitchenDetailPage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
   const kitchen = await getKitchenBySlug(slug)
   if (!kitchen) notFound()
 
   const related = await getRelatedKitchens(kitchen, 3)
   const primaryImage = kitchen.images.find((img) => img.isPrimary) ?? kitchen.images[0]
+  const t = await getTranslations({ locale, namespace: 'kitchens' })
+  const tCommon = await getTranslations({ locale, namespace: 'common' })
 
   return (
     <div>
@@ -51,18 +55,10 @@ export default async function KitchenDetailPage({ params }: Props) {
           <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 pb-14 lg:pb-20 w-full pt-24">
             <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
               <div>
-                {kitchen.isNew && <Badge variant="gold" className="mb-4">New</Badge>}
+                {kitchen.isNew && <Badge variant="gold" className="mb-4">{tCommon('new')}</Badge>}
                 <p className="font-jost text-xs tracking-widest uppercase text-gold mb-2">{kitchen.tagline}</p>
                 <h1 className="font-cormorant text-5xl lg:text-7xl font-light text-cream">{kitchen.name}</h1>
               </div>
-              {kitchen.startingPrice && kitchen.currency && (
-                <div className="text-left sm:text-right">
-                  <p className="font-jost text-xs text-cream/60">Starting from</p>
-                  <p className="font-cormorant text-3xl font-medium text-cream">
-                    {formatPrice(kitchen.startingPrice, kitchen.currency)}
-                  </p>
-                </div>
-              )}
             </div>
           </div>
         </div>
@@ -93,14 +89,18 @@ export default async function KitchenDetailPage({ params }: Props) {
           {/* Description */}
           <AnimatedSection className="lg:col-span-2">
             <Divider className="mb-8" />
-            <h2 className="font-cormorant text-3xl font-light text-stone-950 mb-6">About {kitchen.name}</h2>
+            <h2 className="font-cormorant text-3xl font-light text-stone-950 mb-6">
+              {t('detail.about', { name: kitchen.name })}
+            </h2>
             <p className="font-jost text-sm font-light leading-relaxed text-stone-700">
               {kitchen.longDescription}
             </p>
 
             {kitchen.features.length > 0 && (
               <div className="mt-10">
-                <p className="font-jost text-xs font-medium tracking-widest uppercase text-greige mb-5">Key Features</p>
+                <p className="font-jost text-xs font-medium tracking-widest uppercase text-greige mb-5">
+                  {t('detail.keyFeatures')}
+                </p>
                 <ul className="space-y-3">
                   {kitchen.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-3">
@@ -118,7 +118,9 @@ export default async function KitchenDetailPage({ params }: Props) {
             <div className="bg-cream-100 p-8 border border-cream-200">
               {kitchen.dimensions.length > 0 && (
                 <div className="mb-8">
-                  <p className="font-jost text-xs font-medium tracking-widest uppercase text-greige mb-4">Dimensions</p>
+                  <p className="font-jost text-xs font-medium tracking-widest uppercase text-greige mb-4">
+                    {t('detail.dimensions')}
+                  </p>
                   <div className="space-y-3">
                     {kitchen.dimensions.map((dim) => (
                       <div key={dim.label} className="flex justify-between gap-4">
@@ -132,7 +134,9 @@ export default async function KitchenDetailPage({ params }: Props) {
 
               {kitchen.materials.length > 0 && (
                 <div>
-                  <p className="font-jost text-xs font-medium tracking-widest uppercase text-greige mb-4">Available Materials</p>
+                  <p className="font-jost text-xs font-medium tracking-widest uppercase text-greige mb-4">
+                    {t('detail.availableMaterials')}
+                  </p>
                   <div className="space-y-3">
                     {kitchen.materials.map((mat) => (
                       <div key={mat.id} className="flex items-center gap-3">
@@ -163,13 +167,13 @@ export default async function KitchenDetailPage({ params }: Props) {
         <AnimatedSection className="max-w-screen-2xl mx-auto px-6 lg:px-12 text-center">
           <Divider variant="gold" className="mx-auto mb-8" />
           <h2 className="font-cormorant text-3xl lg:text-4xl font-light text-cream mb-4">
-            Interested in {kitchen.name}?
+            {t('detail.ctaHeading', { name: kitchen.name })}
           </h2>
           <p className="font-jost text-sm font-light text-cream/70 mb-8 max-w-md mx-auto">
-            Book a private consultation at one of our showrooms. Our designers will guide you through every option.
+            {t('detail.ctaBody')}
           </p>
           <Button href="/contact" variant="secondary" size="lg">
-            Request a Quote
+            {t('detail.ctaButton')}
           </Button>
         </AnimatedSection>
       </div>
@@ -180,7 +184,9 @@ export default async function KitchenDetailPage({ params }: Props) {
           <div className="max-w-screen-2xl mx-auto px-6 lg:px-12">
             <AnimatedSection className="mb-12">
               <Divider className="mb-6" />
-              <h2 className="font-cormorant text-3xl font-light text-stone-950">You May Also Like</h2>
+              <h2 className="font-cormorant text-3xl font-light text-stone-950">
+                {t('detail.relatedHeading')}
+              </h2>
             </AnimatedSection>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-0.5 bg-cream-200">
               {related.map((k, i) => (

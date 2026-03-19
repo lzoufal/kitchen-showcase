@@ -7,14 +7,16 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
-import { formatPrice } from '@/lib/utils/formatters'
 import Link from 'next/link'
+import { getTranslations } from 'next-intl/server'
+import { routing } from '@/i18n/routing'
 
-type Props = { params: Promise<{ slug: string }> }
+type Props = { params: Promise<{ locale: string; slug: string }> }
 
 export async function generateStaticParams() {
+  const locales = routing.locales
   const collections = await getAllCollections()
-  return collections.map((c) => ({ slug: c.slug }))
+  return locales.flatMap((locale) => collections.map((c) => ({ locale, slug: c.slug })))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -28,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function CollectionDetailPage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
   const [collection, kitchens] = await Promise.all([
     getCollectionBySlug(slug),
     getKitchensByCollection(
@@ -37,6 +39,9 @@ export default async function CollectionDetailPage({ params }: Props) {
   ])
 
   if (!collection) notFound()
+
+  const t = await getTranslations({ locale, namespace: 'collections' })
+  const tCommon = await getTranslations({ locale, namespace: 'common' })
 
   return (
     <div>
@@ -76,7 +81,7 @@ export default async function CollectionDetailPage({ params }: Props) {
           <AnimatedSection className="mb-12">
             <Divider className="mb-6" />
             <h2 className="font-cormorant text-3xl lg:text-4xl font-light text-stone-950">
-              Kitchens in {collection.name}
+              {t('detail.kitchensInCollection', { name: collection.name })}
             </h2>
           </AnimatedSection>
 
@@ -93,17 +98,12 @@ export default async function CollectionDetailPage({ params }: Props) {
                       sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     />
                     {kitchen.isNew && (
-                      <div className="absolute top-3 left-3"><Badge>New</Badge></div>
+                      <div className="absolute top-3 left-3"><Badge>{tCommon('new')}</Badge></div>
                     )}
                   </div>
                   <div className="p-6">
                     <h3 className="font-cormorant text-2xl font-medium text-stone-950">{kitchen.name}</h3>
                     <p className="font-jost text-sm font-light text-stone-700 mt-1 line-clamp-2">{kitchen.description}</p>
-                    {kitchen.startingPrice && kitchen.currency && (
-                      <p className="font-jost text-xs text-greige mt-3">
-                        From {formatPrice(kitchen.startingPrice, kitchen.currency)}
-                      </p>
-                    )}
                   </div>
                 </Link>
               </AnimatedSection>
@@ -116,10 +116,10 @@ export default async function CollectionDetailPage({ params }: Props) {
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16 text-center">
         <AnimatedSection>
           <p className="font-cormorant text-2xl text-stone-700 mb-8">
-            Ready to begin your kitchen project?
+            {t('detail.ctaText')}
           </p>
           <Button href="/contact" variant="primary" size="lg">
-            Book a Consultation
+            {t('detail.ctaButton')}
           </Button>
         </AnimatedSection>
       </div>

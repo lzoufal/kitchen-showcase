@@ -1,14 +1,13 @@
 export const SITE = {
-  name: 'Atelier Kitchens',
+  name: 'Kitchens',
   tagline: 'Industrial Precision. Stainless by Design.',
   description: 'Industrial-grade bespoke kitchens engineered to exact tolerances. Brushed steel, matte black, raw concrete — built to perform.',
-  url: 'https://atelierkitchens.eu',
+  url: 'https://...',
   socials: {
-    instagram: 'https://instagram.com/atelierkitchens',
-    pinterest: 'https://pinterest.com/atelierkitchens',
+    instagram: 'https://instagram.com/',
   },
   contact: {
-    email: 'hello@atelierkitchens.eu',
-    phone: '+420 220 111 222',
+    email: 'mail@mail.com',
+    phone: '+420 000 000 000',
   },
 }

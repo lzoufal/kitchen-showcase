@@ -5,14 +5,22 @@ import { getAllShowrooms } from '@/lib/api/showrooms'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Button } from '@/components/ui/Button'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Showrooms',
-  description: 'Visit Atelier Kitchens in Prague or Bratislava. Private design consultations available by appointment.',
+type Props = { params: Promise<{ locale: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'showrooms' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+  }
 }
 
 export default async function ShowroomsPage() {
   const showrooms = await getAllShowrooms()
+  const t = await getTranslations('showrooms')
 
   return (
     <div className="pt-24">
@@ -20,10 +28,10 @@ export default async function ShowroomsPage() {
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
         <AnimatedSection>
           <Divider className="mb-6" />
-          <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">Visit Us</p>
-          <h1 className="font-cormorant text-5xl lg:text-7xl font-light text-stone-950 mb-6">Showrooms</h1>
+          <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">{t('label')}</p>
+          <h1 className="font-cormorant text-5xl lg:text-7xl font-light text-stone-950 mb-6">{t('heading')}</h1>
           <p className="font-jost text-sm font-light text-stone-700 max-w-xl leading-relaxed">
-            Experience our kitchens in person. Both showrooms feature fully installed kitchen environments and dedicated design consultation spaces.
+            {t('intro')}
           </p>
         </AnimatedSection>
       </div>
@@ -43,7 +51,7 @@ export default async function ShowroomsPage() {
                 />
                 {showroom.isHeadquarters && (
                   <div className="absolute top-4 left-4 bg-gold text-cream font-jost text-xs tracking-widest uppercase px-3 py-1">
-                    Flagship
+                    {t('flagship')}
                   </div>
                 )}
               </div>
@@ -78,7 +86,7 @@ export default async function ShowroomsPage() {
                   <div className="mb-8">
                     <div className="flex items-center gap-2 mb-3">
                       <Clock size={14} className="text-gold" />
-                      <p className="font-jost text-xs tracking-widest uppercase text-greige">Opening Hours</p>
+                      <p className="font-jost text-xs tracking-widest uppercase text-greige">{t('openingHours')}</p>
                     </div>
                     <div className="space-y-1.5 pl-5">
                       {showroom.hours.map((h) => (
@@ -91,7 +99,7 @@ export default async function ShowroomsPage() {
                   </div>
 
                   <Button href="/contact" variant="primary">
-                    Book a Visit
+                    {t('bookVisit')}
                   </Button>
                 </div>
               </div>

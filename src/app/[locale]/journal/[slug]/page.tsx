@@ -6,12 +6,15 @@ import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { Button } from '@/components/ui/Button'
 import { formatDate } from '@/lib/utils/formatters'
+import { getTranslations } from 'next-intl/server'
+import { routing } from '@/i18n/routing'
 
-type Props = { params: Promise<{ slug: string }> }
+type Props = { params: Promise<{ locale: string; slug: string }> }
 
 export async function generateStaticParams() {
+  const locales = routing.locales
   const articles = await getAllArticles()
-  return articles.map((a) => ({ slug: a.slug }))
+  return locales.flatMap((locale) => articles.map((a) => ({ locale, slug: a.slug })))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -25,9 +28,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function JournalArticlePage({ params }: Props) {
-  const { slug } = await params
+  const { slug, locale } = await params
   const article = await getArticleBySlug(slug)
   if (!article) notFound()
+
+  const t = await getTranslations({ locale, namespace: 'journal' })
 
   return (
     <div>
@@ -54,7 +59,7 @@ export default async function JournalArticlePage({ params }: Props) {
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-8 flex items-center gap-6 border-b border-cream-200">
         <p className="font-jost text-xs text-greige">{formatDate(article.publishedAt)}</p>
         <span className="text-cream-200">·</span>
-        <p className="font-jost text-xs text-greige">{article.readingTimeMinutes} min read</p>
+        <p className="font-jost text-xs text-greige">{article.readingTimeMinutes} {t('minRead')}</p>
         <span className="text-cream-200">·</span>
         <p className="font-jost text-xs text-greige">{article.author.name}</p>
       </div>
@@ -77,9 +82,9 @@ export default async function JournalArticlePage({ params }: Props) {
       <div className="bg-cream-100 py-16 text-center">
         <AnimatedSection>
           <p className="font-cormorant text-2xl text-stone-950 mb-6">
-            Inspired by what you&apos;ve read?
+            {t('detail.ctaText')}
           </p>
-          <Button href="/contact" size="lg">Start Your Project</Button>
+          <Button href="/contact" size="lg">{t('detail.ctaButton')}</Button>
         </AnimatedSection>
       </div>
     </div>

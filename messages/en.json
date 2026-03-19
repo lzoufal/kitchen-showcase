@@ -1,0 +1,192 @@
+{
+  "nav": {
+    "collections": "Collections",
+    "kitchens": "Kitchens",
+    "about": "About",
+    "showrooms": "Showrooms",
+    "contact": "Contact",
+    "journal": "Journal"
+  },
+  "common": {
+    "bookConsultation": "Book Consultation",
+    "exploreCollections": "Explore Collections",
+    "viewAllKitchens": "View All Kitchens",
+    "viewKitchens": "View Kitchens",
+    "requestQuote": "Request a Quote",
+    "findShowroom": "Find a Showroom",
+    "startProject": "Start Your Project",
+    "readMore": "Read More",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "new": "New",
+    "featured": "Featured"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "scroll": "Scroll"
+    },
+    "collections": {
+      "label": "Our Collections",
+      "heading": "Three Visions,",
+      "headingItalic": " One Standard"
+    },
+    "philosophy": {
+      "label": "Our Philosophy",
+      "heading": "Form follows function. Always.",
+      "body1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "body2": "Ut enim ad minim veniam, quis nostrud exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "imageAlt": "Craftsman working on kitchen cabinetry"
+    },
+    "featuredKitchens": {
+      "label": "Featured",
+      "heading": "Selected Works"
+    },
+    "materials": {
+      "label": "Materials",
+      "heading": "The Language of",
+      "headingItalic": " Surface",
+      "stone": {
+        "name": "Stone",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      "wood": {
+        "name": "Wood",
+        "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "lacquer": {
+        "name": "Lacquer",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation."
+      },
+      "metal": {
+        "name": "Metal",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit."
+      }
+    },
+    "testimonials": {
+      "label": "Testimonials",
+      "heading": "What Our Clients Say"
+    },
+    "cta": {
+      "label": "Private Appointments",
+      "heading": "Specify Your Kitchen.",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "bookConsultation": "Book a Consultation",
+      "findShowroom": "Find a Showroom"
+    }
+  },
+  "kitchens": {
+    "pageLabel": "All Kitchens",
+    "pageHeading": "Our Work",
+    "metaTitle": "Kitchens",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "detail": {
+      "about": "About {name}",
+      "keyFeatures": "Key Features",
+      "dimensions": "Dimensions",
+      "availableMaterials": "Available Materials",
+      "ctaHeading": "Interested in {name}?",
+      "ctaBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "ctaButton": "Request a Quote",
+      "relatedHeading": "You May Also Like"
+    }
+  },
+  "collections": {
+    "pageLabel": "Our Work",
+    "pageHeading": "Collections",
+    "metaTitle": "Collections",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "exploreCollection": "Explore Collection",
+    "detail": {
+      "kitchensInCollection": "Kitchens in {name}",
+      "ctaText": "Lorem ipsum dolor sit amet?",
+      "ctaButton": "Book a Consultation"
+    }
+  },
+  "about": {
+    "metaTitle": "About",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "heroAlt": "Atelier Kitchens workshop",
+    "heroHeading": "Our Story",
+    "missionQuote": "\u201cLorem ipsum dolor sit amet, consectetur adipiscing elit.\u201d",
+    "missionBody1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "missionBody2": "Ut enim ad minim veniam, quis nostrud exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+    "craftsmanship": {
+      "label": "Craftsmanship",
+      "heading": "Made by Hand,",
+      "headingItalic": " Finished by Time",
+      "body1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "body2": "Ut enim ad minim veniam, quis nostrud exercitation.",
+      "imageAlt": "Kitchen craftsmanship detail"
+    },
+    "timeline": {
+      "heading": "Twenty Years of Making",
+      "milestones": {
+        "founded": { "title": "Founded in Prague", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
+      }
+    },
+    "ctaText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "ctaButton": "Book a Consultation"
+  },
+  "showrooms": {
+    "metaTitle": "Showrooms",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "label": "Visit Us",
+    "heading": "Showrooms",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    "flagship": "Flagship",
+    "openingHours": "Opening Hours",
+    "bookVisit": "Book a Visit"
+  },
+  "contact": {
+    "metaTitle": "Contact",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "label": "Get in Touch",
+    "heading": "Let\u2019s Talk About Your Kitchen",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone",
+    "showroomsLabel": "Showrooms",
+    "showroomsValue": "Prague",
+    "form": {
+      "fullName": "Full Name",
+      "namePlaceholder": "Your name",
+      "nameError": "Please enter your name",
+      "emailAddress": "Email Address",
+      "emailError": "Please enter a valid email address",
+      "phone": "Phone (optional)",
+      "phonePlaceholder": "+420...",
+      "interest": "I\u2019m interested in",
+      "interestNewKitchen": "A new kitchen",
+      "interestRenovation": "Kitchen renovation",
+      "interestConsultation": "Design consultation",
+      "interestOther": "Other",
+      "message": "Your Message",
+      "messagePlaceholder": "Tell us about your project, timeline, or any questions...",
+      "messageError": "Please tell us a little more (at least 10 characters)",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "successHeading": "Thank you, we\u2019ll be in touch.",
+      "successBody": "A member of our team will contact you within one business day."
+    }
+  },
+  "journal": {
+    "metaTitle": "Journal",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "label": "Ideas & Stories",
+    "heading": "Journal",
+    "minRead": "min read",
+    "detail": {
+      "ctaText": "Lorem ipsum dolor sit amet?",
+      "ctaButton": "Start Your Project"
+    }
+  },
+  "footer": {
+    "explore": "Explore",
+    "contact": "Contact",
+    "findShowroom": "Find a showroom \u2192",
+    "allRightsReserved": "All rights reserved.",
+    "privacyPolicy": "Privacy Policy",
+    "cookiePolicy": "Cookie Policy"
+  }
+}

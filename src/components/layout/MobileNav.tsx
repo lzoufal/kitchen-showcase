@@ -1,15 +1,32 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
+import { Link } from '@/i18n/navigation'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { NAV_LINKS } from '@/lib/constants/navigation'
 import { SITE } from '@/lib/constants/site'
 import { cn } from '@/lib/utils/cn'
+import { useTranslations, useLocale } from 'next-intl'
+import { useRouter, usePathname } from '@/i18n/navigation'
 
 export function MobileNav() {
   const [open, setOpen] = useState(false)
+  const t = useTranslations('nav')
+  const tCommon = useTranslations('common')
+  const locale = useLocale()
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const navLinks = [
+    { labelKey: 'kitchens' as const, href: '/kitchens' },
+    { labelKey: 'about' as const, href: '/about' },
+    { labelKey: 'showrooms' as const, href: '/showrooms' },
+  ]
+
+  const switchLocale = (newLocale: 'cs' | 'en') => {
+    router.replace(pathname, { locale: newLocale })
+    setOpen(false)
+  }
 
   return (
     <>
@@ -53,7 +70,7 @@ export function MobileNav() {
               </div>
 
               <nav className="flex flex-col px-8 py-10 gap-6 flex-1">
-                {NAV_LINKS.map((link, i) => (
+                {navLinks.map((link, i) => (
                   <motion.div
                     key={link.href}
                     initial={{ opacity: 0, x: 20 }}
@@ -62,22 +79,39 @@ export function MobileNav() {
                   >
                     <Link
                       href={link.href}
+                      locale={locale}
                       onClick={() => setOpen(false)}
                       className="font-jost text-xs font-medium tracking-widest uppercase text-stone-700 hover:text-gold transition-colors duration-300"
                     >
-                      {link.label}
+                      {t(link.labelKey)}
                     </Link>
                   </motion.div>
                 ))}
               </nav>
 
-              <div className="px-8 py-8 border-t border-cream-200">
+              <div className="px-8 py-6 border-t border-cream-200 space-y-4">
+                <div className="flex items-center gap-2 font-jost text-xs font-medium tracking-widest">
+                  <button
+                    onClick={() => switchLocale('cs')}
+                    className={locale === 'cs' ? 'text-gold' : 'text-greige hover:text-stone-950'}
+                  >
+                    CS
+                  </button>
+                  <span className="text-cream-200">|</span>
+                  <button
+                    onClick={() => switchLocale('en')}
+                    className={locale === 'en' ? 'text-gold' : 'text-greige hover:text-stone-950'}
+                  >
+                    EN
+                  </button>
+                </div>
                 <Link
                   href="/contact"
+                  locale={locale}
                   onClick={() => setOpen(false)}
                   className="block w-full text-center py-3 px-6 bg-stone-950 text-cream font-jost text-xs tracking-widest uppercase hover:bg-stone-800 transition-colors duration-300"
                 >
-                  Book Consultation
+                  {tCommon('bookConsultation')}
                 </Link>
               </div>
             </motion.div>

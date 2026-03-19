@@ -5,14 +5,22 @@ import { getAllArticles } from '@/lib/api/journal'
 import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { Divider } from '@/components/ui/Divider'
 import { formatDate } from '@/lib/utils/formatters'
+import { getTranslations } from 'next-intl/server'
 
-export const metadata: Metadata = {
-  title: 'Journal',
-  description: 'Design stories, material explorations, and project reveals from Atelier Kitchens.',
+type Props = { params: Promise<{ locale: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'journal' })
+  return {
+    title: t('metaTitle'),
+    description: t('metaDescription'),
+  }
 }
 
 export default async function JournalPage() {
   const articles = await getAllArticles()
+  const t = await getTranslations('journal')
 
   return (
     <div className="pt-24">
@@ -20,8 +28,8 @@ export default async function JournalPage() {
       <div className="max-w-screen-2xl mx-auto px-6 lg:px-12 py-16 lg:py-20">
         <AnimatedSection>
           <Divider className="mb-6" />
-          <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">Ideas & Stories</p>
-          <h1 className="font-cormorant text-5xl lg:text-7xl font-light text-stone-950">Journal</h1>
+          <p className="font-jost text-xs tracking-widest uppercase text-greige mb-3">{t('label')}</p>
+          <h1 className="font-cormorant text-5xl lg:text-7xl font-light text-stone-950">{t('heading')}</h1>
         </AnimatedSection>
       </div>
 
@@ -47,7 +55,7 @@ export default async function JournalPage() {
                     <h2 className="font-cormorant text-3xl lg:text-4xl font-light text-stone-950 mb-4">{articles[0].title}</h2>
                     <p className="font-jost text-sm font-light text-stone-700 leading-relaxed mb-6">{articles[0].excerpt}</p>
                     <p className="font-jost text-xs text-greige">
-                      {formatDate(articles[0].publishedAt)} · {articles[0].readingTimeMinutes} min read
+                      {formatDate(articles[0].publishedAt)} · {articles[0].readingTimeMinutes} {t('minRead')}
                     </p>
                   </div>
                 </div>

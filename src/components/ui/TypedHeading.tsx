@@ -1,16 +1,13 @@
 'use client'
 
+import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useEffect } from 'react'
 
 const LINES = ['Precision Engineered.', 'Stainless by Design.']
 const CHAR_DELAY = 55   // ms per character
 const LINE_PAUSE = 300  // ms pause between lines
 
-interface TypedHeadingProps {
-  className?: string
-}
-
-export function TypedHeading({ className }: TypedHeadingProps) {
+export function TypedHeading({ className }: { className?: string }) {
   const [lineIndex, setLineIndex] = useState(0)
   const [charIndex, setCharIndex] = useState(0)
   const [lines, setLines] = useState<string[]>([''])
@@ -53,9 +50,19 @@ export function TypedHeading({ className }: TypedHeadingProps) {
           {i < lines.length - 1 && <br />}
         </span>
       ))}
-      {!done && (
-        <span className="animate-[blink_0.8s_step-end_infinite] ml-1 text-gold">|</span>
-      )}
+      <AnimatePresence>
+        {!done && (
+          <motion.span
+            key="cursor"
+            className="ml-0.5 text-gold"
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.6, repeat: Infinity, repeatType: 'mirror' }}
+            exit={{ opacity: 0, transition: { duration: 0 } }}
+          >
+            |
+          </motion.span>
+        )}
+      </AnimatePresence>
     </span>
   )
 }

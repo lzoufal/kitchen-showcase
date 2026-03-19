@@ -1,0 +1,193 @@
+{
+  "nav": {
+    "collections": "Kolekce",
+    "kitchens": "Kuchyně",
+    "about": "O nás",
+    "showrooms": "Showroom",
+    "contact": "Kontakt",
+    "journal": "Články"
+  },
+  "common": {
+    "bookConsultation": "Rezervovat konzultaci",
+    "exploreCollections": "Prohlédnout kolekce",
+    "viewAllKitchens": "Všechny kuchyně",
+    "viewKitchens": "Ukázka kuchyní",
+    "requestQuote": "Nezávazná poptávka",
+    "findShowroom": "Najít showroom",
+    "startProject": "Zahájit projekt",
+    "readMore": "Číst dál",
+    "sendMessage": "Odeslat zprávu",
+    "sending": "Odesílám...",
+    "new": "Novinka",
+    "featured": "Doporučeno"
+  },
+  "home": {
+    "hero": {
+      "subtitle": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "scroll": "Rolovat"
+    },
+    "collections": {
+      "label": "Naše kolekce",
+      "heading": "Tři vize,",
+      "headingItalic": " jeden standard"
+    },
+    "philosophy": {
+      "label": "Naše filosofie",
+      "heading": "Forma sleduje funkci. Vždy.",
+      "body1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "body2": "Ut enim ad minim veniam, quis nostrud exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+      "imageAlt": "Řemeslník pracující na kuchyňských skříňkách"
+    },
+    "featuredKitchens": {
+      "label": "Výběr prací",
+      "heading": "Realizované projekty"
+    },
+    "materials": {
+      "label": "Materiály",
+      "heading": "Materiály",
+      "headingItalic": " ",
+      "stone": {
+        "name": "Kámen",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+      },
+      "wood": {
+        "name": "Dřevo",
+        "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      },
+      "lacquer": {
+        "name": "Lak",
+        "description": "Ut enim ad minim veniam, quis nostrud exercitation."
+      },
+      "metal": {
+        "name": "Kov",
+        "description": "Duis aute irure dolor in reprehenderit in voluptate velit."
+      }
+    },
+    "testimonials": {
+      "label": "Reference",
+      "heading": "Co říkají naši klienti"
+    },
+    "cta": {
+      "label": "Soukromé konzultace",
+      "heading": "Nechte si kuchyni navrhnout.",
+      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "bookConsultation": "Rezervovat konzultaci",
+      "findShowroom": "Najít showroom"
+    }
+  },
+  "kitchens": {
+    "pageLabel": "Všechny kuchyně",
+    "pageHeading": "Naše práce",
+    "metaTitle": "Kuchyně",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "detail": {
+      "about": "O kuchyni {name}",
+      "keyFeatures": "Klíčové vlastnosti",
+      "dimensions": "Rozměry",
+      "availableMaterials": "Dostupné materiály",
+      "ctaHeading": "Zajímá vás {name}?",
+      "ctaBody": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "ctaButton": "Nezávazná poptávka",
+      "relatedHeading": "Mohlo by vás také zajímat"
+    }
+  },
+  "collections": {
+    "pageLabel": "Naše práce",
+    "pageHeading": "Kolekce",
+    "metaTitle": "Kolekce",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "exploreCollection": "Prohlédnout kolekci",
+    "detail": {
+      "kitchensInCollection": "Kuchyně v kolekci {name}",
+      "ctaText": "Lorem ipsum dolor sit amet?",
+      "ctaButton": "Rezervovat konzultaci"
+    }
+  },
+  "about": {
+    "metaTitle": "O nás",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "heroAlt": "Dílna Atelier Kitchens",
+    "heroHeading": "Náš příběh",
+    "missionQuote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "missionBody1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "missionBody2": "Ut enim ad minim veniam, quis nostrud exercitation. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore.",
+    "craftsmanship": {
+      "label": "Řemeslo",
+      "heading": "Vyrobeno rukama,",
+      "headingItalic": " dokončeno časem",
+      "body1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+      "body2": "Ut enim ad minim veniam, quis nostrud exercitation.",
+      "imageAlt": "Detail řemeslného zpracování kuchyně"
+    },
+    "timeline": {
+      "heading": "Dvacet let tvorby",
+      "milestones": {
+        "founded": { "title": "Založeno v Praze", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit." }
+        
+      }
+    },
+    "ctaText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "ctaButton": "Rezervovat konzultaci"
+  },
+  "showrooms": {
+    "metaTitle": "Showroom",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "label": "Navštivte nás",
+    "heading": "Showroom",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    "flagship": "Vlajková prodejna",
+    "openingHours": "Otevírací doba",
+    "bookVisit": "Rezervovat návštěvu"
+  },
+  "contact": {
+    "metaTitle": "Kontakt",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "label": "Spojte se s námi",
+    "heading": "Pojďme mluvit o vaší kuchyni",
+    "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "emailLabel": "E-mail",
+    "phoneLabel": "Telefon",
+    "showroomsLabel": "Showrooomy",
+    "showroomsValue": "Praha",
+    "form": {
+      "fullName": "Celé jméno",
+      "namePlaceholder": "Vaše jméno",
+      "nameError": "Prosím zadejte své jméno",
+      "emailAddress": "E-mailová adresa",
+      "emailError": "Prosím zadejte platný e-mail",
+      "phone": "Telefon (nepovinné)",
+      "phonePlaceholder": "+420...",
+      "interest": "Mám zájem o",
+      "interestNewKitchen": "Novou kuchyni",
+      "interestRenovation": "Rekonstrukci kuchyně",
+      "interestConsultation": "Designovou konzultaci",
+      "interestOther": "Jiné",
+      "message": "Vaše zpráva",
+      "messagePlaceholder": "Popište nám svůj projekt, časový rámec nebo jakékoli dotazy...",
+      "messageError": "Prosím napište nám trochu více (alespoň 10 znaků)",
+      "submit": "Odeslat zprávu",
+      "submitting": "Odesílám...",
+      "successHeading": "Děkujeme, ozveme se vám.",
+      "successBody": "Člen našeho týmu vás bude kontaktovat do jednoho pracovního dne."
+    }
+  },
+  "journal": {
+    "metaTitle": "Články",
+    "metaDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "label": "Nápady a příběhy",
+    "heading": "Články",
+    "minRead": "min čtení",
+    "detail": {
+      "ctaText": "Lorem ipsum dolor sit amet?",
+      "ctaButton": "Zahájit projekt"
+    }
+  },
+  "footer": {
+    "explore": "Prozkoumejte",
+    "contact": "Kontakt",
+    "findShowroom": "Najít showroom →",
+    "allRightsReserved": "Všechna práva vyhrazena.",
+    "privacyPolicy": "Zásady ochrany soukromí",
+    "cookiePolicy": "Zásady cookies"
+  }
+}
