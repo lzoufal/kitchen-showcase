@@ -1,6 +1,4 @@
 import type { Metadata } from 'next'
-import { Space_Grotesk, Jost } from 'next/font/google'
-import '../globals.css'
 import { Header } from '@/components/layout/Header'
 import { Footer } from '@/components/layout/Footer'
 import { Providers } from '@/components/layout/Providers'
@@ -9,20 +7,6 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
-
-const cormorant = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-cormorant',
-  display: 'swap',
-})
-
-const jost = Jost({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-jost',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: {
@@ -58,16 +42,16 @@ export default async function LocaleLayout({
   const messages = await getMessages()
 
   return (
-    <html lang={locale} className={`${cormorant.variable} ${jost.variable} h-full`}>
-      <body className="min-h-full flex flex-col bg-cream text-stone-950 antialiased">
-        <NextIntlClientProvider messages={messages}>
-          <Providers>
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </Providers>
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <>
+      {/* Set lang on <html> synchronously before hydration */}
+      <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang="${locale}";` }} />
+      <NextIntlClientProvider messages={messages}>
+        <Providers>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </Providers>
+      </NextIntlClientProvider>
+    </>
   )
 }
