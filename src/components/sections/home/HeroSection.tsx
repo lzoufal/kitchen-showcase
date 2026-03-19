@@ -5,9 +5,9 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col justify-start overflow-hidden bg-cream pt-24">
       {/* Content */}
-      <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-10 lg:py-14">
+      <div className="relative z-10 w-full max-w-screen-2xl mx-auto px-6 lg:px-12 py-4 lg:py-6">
         <div className="max-w-2xl">
-          <Divider variant="gold" className="mb-8" />
+          <Divider variant="gold" className="mb-4" />
           <h1 className="font-cormorant text-5xl md:text-7xl lg:text-8xl font-light text-stone-950 leading-tight mb-8">
             <TypedHeading />
           </h1>
