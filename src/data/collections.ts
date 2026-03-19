@@ -1,0 +1,58 @@
+import type { Collection } from '@/types/collection'
+
+export const collectionsData: Collection[] = [
+  {
+    id: 'col-nordic',
+    slug: 'nordic-pure',
+    name: 'Nordic Pure',
+    tagline: 'Silence in white',
+    description: 'Stripped to essence. Nordic Pure celebrates raw materials and uncluttered form — a kitchen that breathes.',
+    longDescription: 'Inspired by the vast Scandinavian landscapes and the philosophy of hygge, Nordic Pure is a study in restraint. Light wood grains, matte white surfaces, and hardware that recedes into the background. The result is a kitchen that invites you to slow down and inhabit your home fully. Every joint, every edge, every drawer pull is considered for decades of daily use.',
+    heroImage: {
+      url: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80',
+      alt: 'Nordic Pure collection — white minimalist kitchen',
+    },
+    accentColor: '#D9D1C4',
+    kitchenIds: ['k-alba', 'k-frost', 'k-lund'],
+    order: 1,
+    publishedAt: '2024-01-15',
+    seoTitle: 'Nordic Pure Collection — Minimalist Luxury Kitchens | Atelier Kitchens',
+    seoDescription: 'A collection celebrating Scandinavian simplicity. Matte whites, light oak, and craftsmanship that endures.',
+  },
+  {
+    id: 'col-atelier',
+    slug: 'atelier-noir',
+    name: 'Atelier Noir',
+    tagline: 'Drama in shadow',
+    description: 'For those who command a room. Deep lacquers, aged metals, and stone surfaces that hold light like sculpture.',
+    longDescription: 'Atelier Noir is uncompromising. Conceived for the architecturally significant kitchen — the kind of space where cooking is ceremony and entertaining is theatre. Every surface is chosen for its ability to absorb and reflect light differently across the day. Smoked oak, black-tinted glass, and hand-patinated brass hardware form a backdrop that is both imposing and deeply livable.',
+    heroImage: {
+      url: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=1600&q=80',
+      alt: 'Atelier Noir collection — dark dramatic kitchen',
+    },
+    accentColor: '#292524',
+    kitchenIds: ['k-onyx', 'k-raven'],
+    order: 2,
+    publishedAt: '2024-02-01',
+    seoTitle: 'Atelier Noir Collection — Dark Luxury Kitchens | Atelier Kitchens',
+    seoDescription: 'Deep lacquers, aged metals, and stone. A collection for the architecturally significant kitchen.',
+  },
+  {
+    id: 'col-terra',
+    slug: 'terra-viva',
+    name: 'Terra Viva',
+    tagline: 'Earth reimagined',
+    description: 'Natural stone, terracotta, and warm linen tones. Terra Viva is a return to the material world.',
+    longDescription: 'Terra Viva draws from the Mediterranean vernacular — the sun-warmed stone of Tuscany, the hand-thrown ceramics of Provence, the terracotta floors of Andalusia. Warm putty lacquers, live-edge travertine islands, and textured linen-look panels create a kitchen that feels like it has always been there. Timeless without being historical.',
+    heroImage: {
+      url: 'https://images.unsplash.com/photo-1565538810643-b5bdb714032a?w=1600&q=80',
+      alt: 'Terra Viva collection — warm natural tones kitchen',
+    },
+    accentColor: '#B8965A',
+    kitchenIds: ['k-sienna', 'k-lume'],
+    order: 3,
+    publishedAt: '2024-03-10',
+    seoTitle: 'Terra Viva Collection — Natural Luxury Kitchens | Atelier Kitchens',
+    seoDescription: 'Mediterranean warmth in stone, terracotta, and linen tones. Kitchens that feel like home.',
+  },
+]
